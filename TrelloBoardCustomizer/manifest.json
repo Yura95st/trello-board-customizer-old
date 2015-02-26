@@ -1,0 +1,22 @@
+{
+    "manifest_version": 2,
+
+    "name": "Trello Board Customizer",
+    "description": "Customize your Trello boards.",
+    "version": "1.0.0",
+    "offline_enabled": true,
+
+    "content_scripts": [
+        {
+            "matches": [ "*://*.trello.com/*" ],
+            "js": [ "scripts/content.js" ],
+            "run_at": "document_idle",
+            "all_frames": false
+        }
+    ],
+
+    "web_accessible_resources": [ 
+        "scripts/*.js.map",
+        "scripts/*.ts"
+    ]
+}
