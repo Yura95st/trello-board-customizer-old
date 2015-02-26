@@ -56,6 +56,8 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="scripts\content.ts" />
+    <TypeScriptCompile Include="scripts\Utils\Guard.ts" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>
