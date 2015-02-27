@@ -8,7 +8,7 @@ module Repository
     {
         insert(boardConfig: BoardConfig): void;
 
-        getById(boardConfigId: number): BoardConfig;
+        getById(boardConfigId: string): BoardConfig;
 
         load(): void;
 
