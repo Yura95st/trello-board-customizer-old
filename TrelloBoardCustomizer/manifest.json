@@ -14,7 +14,8 @@
                 "scripts/Models/Url.js",
                 "scripts/Models/BoardBackground.js",
                 "scripts/Models/BoardConfig.js",
-                "scripts/Enums/BoardCustomizerMode.js",
+                "scripts/DataStorage/IDataStorage.js",
+                "scripts/DataStorage/ChromeDataStorage.js",
                 "scripts/BoardCustomizer.js",
                 "scripts/content.js"
             ],
