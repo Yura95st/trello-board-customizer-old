@@ -47,5 +47,39 @@ module Models
 
             return true;
         }
+
+        static fromJson(json: any): BoardConfig
+        {
+            var boardConfig: BoardConfig = null;
+
+            try
+            {
+                if (json && json._background)
+                {
+                    var boardBackground: BoardBackground = new BoardBackground();
+
+                    if (json._background._color)
+                    {
+                        boardBackground.color = json._background._color;
+                    }
+
+                    if (json._background._image)
+                    {
+                        boardBackground.image = json._background._image;
+                    }
+
+                    boardConfig = new BoardConfig(json._boardId, boardBackground);
+                }
+            }
+            catch (e)
+            {
+                console.error("Invalid json for BoardConfig.");
+                console.error(e.message);
+            }
+            finally
+            {
+                return boardConfig;
+            }
+        }
     }
 }
