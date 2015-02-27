@@ -58,7 +58,7 @@
     <TypeScriptCompile Include="scripts\BoardCustomizer.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="scripts\content.ts" />
+    <TypeScriptCompile Include="scripts\App.ts" />
     <TypeScriptCompile Include="scripts\DataStorage\ChromeDataStorage.ts" />
     <TypeScriptCompile Include="scripts\DataStorage\IDataStorage.ts" />
     <TypeScriptCompile Include="scripts\Models\BoardBackground.ts" />
