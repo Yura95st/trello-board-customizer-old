@@ -55,6 +55,9 @@
     <Content Include="manifest.json" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="scripts\BoardCustomizer.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="scripts\content.ts" />
     <TypeScriptCompile Include="scripts\Models\BoardBackground.ts" />
     <TypeScriptCompile Include="scripts\Models\BoardConfig.ts" />
