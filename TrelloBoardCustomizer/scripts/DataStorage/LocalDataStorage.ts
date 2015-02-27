@@ -2,16 +2,16 @@
 
 module DataStorage
 {
-    export class ChromeDataStorage implements IDataStorage
+    export class LocalDataStorage implements IDataStorage
     {
         getItem(key: string): string
         {
-            throw new Error("Not implemented");
+            return localStorage[key];
         }
 
         setItem(key: string, value: string): void
         {
-            throw new Error("Not implemented");
+            localStorage[key] = value;
         }
     }
 } 
