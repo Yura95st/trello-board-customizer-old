@@ -1,10 +1,11 @@
 ﻿/// <reference path="Utils/Guard.ts" />
 /// <reference path="Models/Url.ts" />
 /// <reference path="Models/BoardConfig.ts" />
-/// <reference path="Enums/BoardCustomizerMode.ts" />
+/// <reference path="Repository/IBoardConfigRepository.ts" />
 module BoardCustomizer
 {
     import Guard = Utils.Guard;
+    import IBoardConfigRepository = Repository.IBoardConfigRepository;
 
     export class BoardCustomizer
     {
@@ -13,18 +14,69 @@ module BoardCustomizer
         private static urlHostName: string = "trello.com";
         private static urlBoardSegment: string = "b";
         private static urlBoardSegmentsMinNumber: number = 2;
-        private static boardConfigStorage: string = "boardConfig";
 
         private _document: Document;
+        private _repository: IBoardConfigRepository;
 
-        constructor(document: Document)
+        constructor(document: Document, repository: IBoardConfigRepository)
         {
             Guard.notNull(document, "document");
+            Guard.notNull(repository, "repository");
 
             this._document = document;
+            this._repository = repository;
+
+            this._repository.load();
         }
 
-        start(): void
+        private startFromLocalStorage(boardId: string): void
+        {
+            var boardConfig: Models.BoardConfig = this._repository.getById(boardId);
+
+            if (boardConfig !== null)
+            {
+                this.customize(boardConfig);
+            }
+        }
+
+        private startUsual(boardId: string): void
+        {
+            var boardConfigString: string = this.getBoardConfigString();
+
+            var boardConfig: Models.BoardConfig = this.getBoardConfig(boardId, boardConfigString);
+
+            var localBoardConfig: Models.BoardConfig = this._repository.getById(boardId);
+
+            if (boardConfig !== null)
+            {
+                if (!boardConfig.equals(localBoardConfig))
+                {
+                    if (localBoardConfig === null)
+                    {
+                        this._repository.insert(boardConfig);
+                    }
+                    else
+                    {
+                        this._repository.update(boardConfig);
+                    }
+
+                    this._repository.save();
+
+                    this.customize(boardConfig);
+                }
+            }
+            else
+            {
+                if (localBoardConfig !== null)
+                {
+                    this._repository.remove(localBoardConfig);
+
+                    this._repository.save();
+                }
+            }
+        }
+
+        start(isFromLocalStorageMode?: boolean): void
         {
             var url: Models.Url = new Models.Url(this._document.URL);
 
@@ -34,24 +86,19 @@ module BoardCustomizer
             }
 
             var boardId: string = this.getBoardIdFromUrl(url);
-            console.info(boardId);
 
-            var boardConfigString: string = this.getBoardConfigString();
-            console.info(boardConfigString);
-
-            var boardConfig: Models.BoardConfig = this.getBoardConfig(boardId, boardConfigString);
-            console.info(boardConfig);
-
-            this.customize(boardConfig);
+            if (isFromLocalStorageMode)
+            {
+                this.startFromLocalStorage(boardId);
+            }
+            else
+            {
+                this.startUsual(boardId);
+            }
         }
 
         private customize(boardConfig: Models.BoardConfig): void
         {
-            if (boardConfig === null)
-            {
-                return;
-            }
-
             this.changeBackground(boardConfig.background);
         }
 
@@ -117,13 +164,16 @@ module BoardCustomizer
 
             try
             {
-                var data: any = JSON.parse(boardConfigString);
-
-                var boardBackground: Models.BoardBackground = this.getBoardBackground(data.background);
-
-                if (boardBackground !== null)
+                if (boardConfigString.length > 0)
                 {
-                    boardConfig = new Models.BoardConfig(boardId, boardBackground);
+                    var data: any = JSON.parse(boardConfigString);
+
+                    var boardBackground: Models.BoardBackground = this.getBoardBackground(data.background);
+
+                    if (boardBackground !== null)
+                    {
+                        boardConfig = new Models.BoardConfig(boardId, boardBackground);
+                    }
                 }
             }
             catch (e)
