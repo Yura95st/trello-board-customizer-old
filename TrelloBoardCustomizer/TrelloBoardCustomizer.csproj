@@ -52,6 +52,9 @@
     <TypeScriptSourceMap>false</TypeScriptSourceMap>
   </PropertyGroup>
   <ItemGroup>
+    <Content Include="images\icon_128.png" />
+    <Content Include="images\icon_32.png" />
+    <Content Include="images\icon_48.png" />
     <Content Include="manifest.json" />
   </ItemGroup>
   <ItemGroup>

@@ -6,6 +6,12 @@
     "version": "1.0.0",
     "offline_enabled": true,
 
+    "icons": { 
+		"32": "images/icon_32.png",
+		"48": "images/icon_48.png",
+        "128": "images/icon_128.png"
+	},
+
     "content_scripts": [
         {
             "matches": [ "*://*.trello.com/*" ],
