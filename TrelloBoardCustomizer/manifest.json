@@ -16,6 +16,8 @@
                 "scripts/Models/BoardConfig.js",
                 "scripts/DataStorage/IDataStorage.js",
                 "scripts/DataStorage/ChromeDataStorage.js",
+                "scripts/Repository/IBoardConfigRepository.js",
+                "scripts/Repository/BoardConfigRepository.js",
                 "scripts/BoardCustomizer.js",
                 "scripts/content.js"
             ],

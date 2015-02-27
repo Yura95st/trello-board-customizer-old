@@ -64,6 +64,8 @@
     <TypeScriptCompile Include="scripts\Models\BoardBackground.ts" />
     <TypeScriptCompile Include="scripts\Models\BoardConfig.ts" />
     <TypeScriptCompile Include="scripts\Models\Url.ts" />
+    <TypeScriptCompile Include="scripts\Repository\BoardConfigRepository.ts" />
+    <TypeScriptCompile Include="scripts\Repository\IBoardConfigRepository.ts" />
     <TypeScriptCompile Include="scripts\Utils\Guard.ts" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
