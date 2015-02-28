@@ -11,6 +11,7 @@ module BoardCustomizer
     {
         private static regexString: string = "@@\.boardconfig={[\\s\\S]*}";
         private static cardTitleClass: string = "list-card-title";
+        private static styleContainerId: string = "trello_board_cutomizer_style";
         private static urlHostName: string = "trello.com";
         private static urlBoardSegment: string = "b";
         private static urlBoardSegmentsMinNumber: number = 2;
@@ -67,6 +68,8 @@ module BoardCustomizer
             }
             else
             {
+                this.deleteStyleContainer();
+
                 if (localBoardConfig !== null)
                 {
                     this._repository.remove(localBoardConfig);
@@ -99,24 +102,67 @@ module BoardCustomizer
 
         private customize(boardConfig: Models.BoardConfig): void
         {
-            this.changeBackground(boardConfig.background);
+            var styleContainer: HTMLElement = this.getStyleContainer();
+
+            styleContainer.innerText = this.generateStyle(boardConfig);
         }
 
-        private changeBackground(boardBackground: Models.BoardBackground)
+        private getStyleContainer(): HTMLElement
         {
-            var newStyle: string = this._document.body.getAttribute("style");
+            var styleContainer: HTMLElement = this._document.getElementById(BoardCustomizer.styleContainerId);
 
-            if (boardBackground.image)
+            if (!styleContainer)
             {
-                newStyle += " background-image: url(\"" + boardBackground.image + "\") !important;";
+                styleContainer = this._document.createElement("style");
+                styleContainer.setAttribute("id", BoardCustomizer.styleContainerId);
+
+                this._document.body.appendChild(styleContainer);
             }
 
-            if (boardBackground.color)
+            return styleContainer;
+        }
+
+        private deleteStyleContainer(): void
+        {
+            var styleContainer: HTMLElement = this._document.getElementById(BoardCustomizer.styleContainerId);
+
+            if (styleContainer)
             {
-                newStyle += " background-color: " + boardBackground.color + " !important;";
+                this._document.body.removeChild(styleContainer);
+            }
+        }
+
+        private generateStyle(boardConfig: Models.BoardConfig): string
+        {
+            var newStyle: string = "";
+
+            newStyle += this.generateBackgroundStyle(boardConfig.background);
+
+            return newStyle;
+        }
+
+        private generateBackgroundStyle(boardBackground: Models.BoardBackground): string
+        {
+            var newStyle: string = "";
+
+            if (boardBackground)
+            {
+                newStyle += "body {";
+
+                if (boardBackground.image)
+                {
+                    newStyle += "background-image: url(\"" + boardBackground.image + "\") !important;";
+                }
+
+                if (boardBackground.color)
+                {
+                    newStyle += "background-color: " + boardBackground.color + " !important;";
+                }
+
+                newStyle += "}";
             }
 
-            this._document.body.setAttribute("style", newStyle);
+            return newStyle;
         }
 
         private isBoardUrl(url: Models.Url): boolean
@@ -168,12 +214,9 @@ module BoardCustomizer
                 {
                     var data: any = JSON.parse(boardConfigString);
 
-                    var boardBackground: Models.BoardBackground = this.getBoardBackground(data.background);
+                    boardConfig = new Models.BoardConfig(boardId);
 
-                    if (boardBackground !== null)
-                    {
-                        boardConfig = new Models.BoardConfig(boardId, boardBackground);
-                    }
+                    boardConfig.background = this.getBoardBackground(data.background);
                 }
             }
             catch (e)

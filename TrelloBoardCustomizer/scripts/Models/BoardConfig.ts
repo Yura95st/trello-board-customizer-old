@@ -9,13 +9,11 @@ module Models
         private _boardId: string;
         private _background: BoardBackground;
 
-        constructor(boardId: string, boardBackground: BoardBackground)
+        constructor(boardId: string)
         {
             Guard.notNullOrEmpty(boardId, "boardId");
-            Guard.notNull(boardBackground, "boardBackground");
 
             this._boardId = boardId;
-            this._background = boardBackground;
         }
 
         get boardId(): string
@@ -28,9 +26,14 @@ module Models
             return this._background;
         }
 
+        set background(value: BoardBackground)
+        {
+            this._background = value;
+        }
+
         equals(boardConfig: BoardConfig): boolean
         {
-            if (boardConfig === undefined || boardConfig === null)
+            if (!boardConfig)
             {
                 return false;
             }
@@ -40,9 +43,19 @@ module Models
                 return false;
             }
 
-            if (!this._background.equals(boardConfig.background))
+            if (this._background === null)
             {
-                return false;
+                if (boardConfig.background !== null)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                if (!this._background.equals(boardConfig.background))
+                {
+                    return false;
+                }
             }
 
             return true;
@@ -54,21 +67,26 @@ module Models
 
             try
             {
-                if (json && json._background)
+                if (json)
                 {
-                    var boardBackground: BoardBackground = new BoardBackground();
+                    boardConfig = new BoardConfig(json._boardId);
 
-                    if (json._background._color)
+                    if (json._background)
                     {
-                        boardBackground.color = json._background._color;
-                    }
+                        var boardBackground: BoardBackground = new BoardBackground();
 
-                    if (json._background._image)
-                    {
-                        boardBackground.image = json._background._image;
-                    }
+                        if (json._background._color)
+                        {
+                            boardBackground.color = json._background._color;
+                        }
 
-                    boardConfig = new BoardConfig(json._boardId, boardBackground);
+                        if (json._background._image)
+                        {
+                            boardBackground.image = json._background._image;
+                        }
+
+                        boardConfig.background = boardBackground;
+                    }
                 }
             }
             catch (e)
