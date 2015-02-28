@@ -56,7 +56,6 @@
     <Content Include="images\Icon-32.png" />
     <Content Include="images\Icon-48.png" />
     <Content Include="images\Icon-64.png" />
-    <Content Include="manifest.json" />
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="scripts\BoardCustomizer.ts">
@@ -71,6 +70,10 @@
     <TypeScriptCompile Include="scripts\Repository\BoardConfigRepository.ts" />
     <TypeScriptCompile Include="scripts\Repository\IBoardConfigRepository.ts" />
     <TypeScriptCompile Include="scripts\Utils\Guard.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Chrome\manifest.json" />
+    <Content Include="Safari\Info.plist" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

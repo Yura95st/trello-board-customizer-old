@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>Builder Version</key>
+	<string>10600.3.18</string>
+	<key>CFBundleDisplayName</key>
+	<string>Trello Board Customizer</string>
+	<key>CFBundleIdentifier</key>
+	<string>com.yourcompany.trelloboardcustomizer</string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundleShortVersionString</key>
+	<string>1.0</string>
+	<key>CFBundleVersion</key>
+	<string>1</string>
+	<key>Chrome</key>
+	<dict/>
+	<key>Content</key>
+	<dict>
+		<key>Scripts</key>
+		<dict>
+			<key>End</key>
+			<array>
+				<string>scripts/Utils/Guard.js</string>
+				<string>scripts/Models/Url.js</string>
+				<string>scripts/Models/BoardBackground.js</string>
+				<string>scripts/Models/BoardConfig.js</string>
+				<string>scripts/DataStorage/IDataStorage.js</string>
+				<string>scripts/DataStorage/LocalDataStorage.js</string>
+				<string>scripts/Repository/IBoardConfigRepository.js</string>
+				<string>scripts/Repository/BoardConfigRepository.js</string>
+				<string>scripts/BoardCustomizer.js</string>
+				<string>scripts/App.js</string>
+			</array>
+		</dict>
+		<key>Whitelist</key>
+		<array>
+			<string>*://*.trello.com/*</string>
+		</array>
+	</dict>
+	<key>DeveloperIdentifier</key>
+	<string>M42P84B3L4</string>
+	<key>ExtensionInfoDictionaryVersion</key>
+	<string>1.0</string>
+	<key>Permissions</key>
+	<dict>
+		<key>Website Access</key>
+		<dict>
+			<key>Include Secure Pages</key>
+			<true/>
+			<key>Level</key>
+			<string>All</string>
+		</dict>
+	</dict>
+</dict>
+</plist>
