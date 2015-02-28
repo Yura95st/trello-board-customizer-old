@@ -13,5 +13,8 @@ boardCustomizer.start(true);
 
 window.onload = () =>
 {
-    boardCustomizer.start();
+    window.setInterval(() =>
+    {
+        boardCustomizer.start();
+    }, 100);
 };
