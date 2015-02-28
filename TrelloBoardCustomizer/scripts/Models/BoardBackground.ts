@@ -29,14 +29,14 @@ module Models
         {
             Guard.notNull(value, "value");
 
-            this._color = value;
+            this._color = this.validateColor(value);
         }
 
         set image(value: string)
         {
             Guard.notNull(value, "value");
 
-            this._image = value;
+            this._image = this.validateImage(value);
         }
 
         equals(boardBackground: BoardBackground): boolean
@@ -57,6 +57,51 @@ module Models
             }
 
             return true;
+        }
+
+        private validateColor(colorString: string): string
+        {
+            var divElement: HTMLDivElement = document.createElement("div");
+
+            divElement.style.backgroundColor = colorString;
+
+            var color: string = divElement.style.backgroundColor;
+
+            if (!color)
+            {
+                color = "";
+            }
+
+            return color;
+        }
+
+        private validateImage(imageUrl: string): string
+        {
+            var image: string;
+
+            if (imageUrl === "none" || imageUrl === "initial" || imageUrl === "inherit")
+            {
+                image = "";
+            }
+            else
+            {
+                var divElement: HTMLDivElement = document.createElement("div");
+
+                divElement.style.backgroundImage = "url(" + imageUrl + ")";
+
+                image = divElement.style.backgroundImage;
+
+                if (image)
+                {
+                    image = image.substring(4, image.length - 1);
+                }
+                else
+                {
+                    image = "";
+                }
+            }
+
+            return image;
         }
     }
 }
