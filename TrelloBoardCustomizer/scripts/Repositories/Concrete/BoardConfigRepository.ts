@@ -1,7 +1,8 @@
-﻿/// <reference path="IBoardConfigRepository.ts" />
-/// <reference path="../DataStorage/Abstract/IDataStorage.ts" />
-module Repository
+﻿/// <reference path="../Abstract/IBoardConfigRepository.ts" />
+/// <reference path="../../DataStorage/Abstract/IDataStorage.ts" />
+module Repositories.Concrete
 {
+    import IBoardConfigRepository = Abstract.IBoardConfigRepository;
     import IDataStorage = DataStorage.Abstract.IDataStorage;
     import Guard = Utils.Guard;
 

@@ -1,9 +1,9 @@
 ﻿/// <reference path="IBoardConfigService.ts" />
-/// <reference path="../Repository/IBoardConfigRepository.ts" />
+/// <reference path="../Repositories/Abstract/IBoardConfigRepository.ts" />
 module Services
 {
+    import IBoardConfigRepository = Repositories.Abstract.IBoardConfigRepository;
     import Guard = Utils.Guard;
-    import IBoardConfigRepository = Repository.IBoardConfigRepository;
 
     export class BoardConfigService implements IBoardConfigService
     {

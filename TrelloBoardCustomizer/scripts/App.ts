@@ -1,5 +1,5 @@
 ﻿/// <reference path="DataStorage/Concrete/LocalDataStorage.ts" />
-/// <reference path="Repository/BoardConfigRepository.ts" />
+/// <reference path="Repositories/Concrete/BoardConfigRepository.ts" />
 /// <reference path="Services/BoardConfigService.ts" />
 /// <reference path="Services/BoardStyleService/BoardStyleService.ts" />
 /// <reference path="BoardCustomizer.ts" />
@@ -7,7 +7,7 @@
 
 var dataStorage: DataStorage.Abstract.IDataStorage = new DataStorage.Concrete.LocalDataStorage();
 
-var repository: Repository.IBoardConfigRepository = new Repository.BoardConfigRepository(dataStorage);
+var repository: Repositories.Abstract.IBoardConfigRepository = new Repositories.Concrete.BoardConfigRepository(dataStorage);
 
 var boardConfigService: Services.IBoardConfigService = new Services.BoardConfigService(document, repository);
 
