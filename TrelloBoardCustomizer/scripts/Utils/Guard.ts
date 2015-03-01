@@ -25,5 +25,15 @@ module Utils
                 throw new RangeError("Argument '" + argumentName + "' can't be empty");
             }
         }
+
+        static numberIsGreaterOrEqualToZero(argument: number, argumentName: string): void
+        {
+            Guard.notNull(argument, argumentName);
+
+            if (argument < 0)
+            {
+                throw new RangeError("Argument '" + argumentName + "' can't be less than zero.");
+            }
+        }
     }
 }
