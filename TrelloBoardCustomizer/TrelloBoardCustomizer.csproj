@@ -58,6 +58,7 @@
     <Content Include="images\Icon-64.png" />
   </ItemGroup>
   <ItemGroup>
+    <TypeScriptCompile Include="scripts\References.ts" />
     <TypeScriptCompile Include="scripts\BoardCustomizer.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>

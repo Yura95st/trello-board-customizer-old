@@ -1,4 +1,4 @@
-﻿/// <reference path="../Abstract/IBoardStyleService.ts" />
+﻿/// <reference path="../../References.ts" />
 module Services.Concrete
 {
     import IBoardStyleService = Abstract.IBoardStyleService;

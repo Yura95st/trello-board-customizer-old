@@ -1,4 +1,4 @@
-﻿/// <reference path="BoardBackground.ts" />
+﻿/// <reference path="../References.ts" />
 module Models
 {
     import Guard = Utils.Guard;

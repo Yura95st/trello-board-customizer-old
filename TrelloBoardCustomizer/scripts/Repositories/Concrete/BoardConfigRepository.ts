@@ -1,5 +1,4 @@
-﻿/// <reference path="../Abstract/IBoardConfigRepository.ts" />
-/// <reference path="../../DataStorage/Abstract/IDataStorage.ts" />
+﻿/// <reference path="../../References.ts" />
 module Repositories.Concrete
 {
     import IBoardConfigRepository = Abstract.IBoardConfigRepository;

@@ -1,4 +1,5 @@
-﻿module Utils
+﻿/// <reference path="../References.ts" />
+module Utils
 {
     export class Guard
     {

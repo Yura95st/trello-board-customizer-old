@@ -1,4 +1,4 @@
-﻿/// <reference path="../../Models/BoardConfig.ts" />
+﻿/// <reference path="../../References.ts" />
 module Repositories.Abstract
 {
     import BoardConfig = Models.BoardConfig;

@@ -1,5 +1,4 @@
-﻿/// <reference path="../Abstract/IDataStorage.ts" />
-/// <reference path="../../Utils/Guard.ts" />
+﻿/// <reference path="../../References.ts" />
 module DataStorage.Concrete
 {
     import IDataStorage = Abstract.IDataStorage;

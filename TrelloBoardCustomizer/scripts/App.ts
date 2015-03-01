@@ -1,8 +1,4 @@
-﻿/// <reference path="DataStorage/Concrete/LocalDataStorage.ts" />
-/// <reference path="Repositories/Concrete/BoardConfigRepository.ts" />
-/// <reference path="Services/Concrete/BoardConfigService.ts" />
-/// <reference path="Services/Concrete/BoardStyleService.ts" />
-/// <reference path="BoardCustomizer.ts" />
+﻿/// <reference path="References.ts" />
 //declare var chrome: any;
 
 var dataStorage: DataStorage.Abstract.IDataStorage = new DataStorage.Concrete.LocalDataStorage();

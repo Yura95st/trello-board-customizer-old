@@ -1,4 +1,5 @@
-﻿module DataStorage.Abstract
+﻿/// <reference path="../../References.ts" />
+module DataStorage.Abstract
 {
     export interface IDataStorage
     {
@@ -6,4 +7,4 @@
 
         setItem(key: string, value: string): void;
     }
-} 
+}
