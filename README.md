@@ -28,7 +28,7 @@ The extension for Chrome and Safari browsers to customize your Trello Board's ba
 Add new card with this content to the board You want to customize:
 
 ```json
-@@.boardconfig={
+@@boardConfig={
     "background": {
         "color":"<color_value>",
         "image":"<image_url>"
@@ -39,7 +39,7 @@ Add new card with this content to the board You want to customize:
 ## Example
 
 ```json
-@@.boardconfig={
+@@boardConfig={
     "background": {
         "color":"#3AA497",
         "image":"https://trello-attachments.s3.amazonaws.com/54ed143df7905fb3cc1dcb44/1600x1000/c92f0c41963954b7f96821638f2a07fc/road-and-cloudy-blue-sky-new-desktop-wallpapers-in-high-resolution-fullscreen.jpg"
