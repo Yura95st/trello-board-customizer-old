@@ -1,5 +1,4 @@
 ﻿/// <reference path="../Models/BoardConfig.ts" />
-
 module Repository
 {
     import BoardConfig = Models.BoardConfig;

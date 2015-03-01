@@ -1,7 +1,5 @@
-﻿/// <reference path="Utils/Guard.ts" />
+﻿/// <reference path="Services/IBoardConfigService.ts" />
 /// <reference path="Models/Url.ts" />
-/// <reference path="Models/BoardConfig.ts" />
-/// <reference path="Services/IBoardConfigService.ts" />
 module BoardCustomizer
 {
     import Guard = Utils.Guard;
