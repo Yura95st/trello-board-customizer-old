@@ -12,3 +12,5 @@
 /// <reference path="Services/Concrete/BoardStyleService.ts" />
 /// <reference path="Services/Concrete/BoardUrlService.ts" />
 /// <reference path="Utils/Guard.ts" />
+/// <reference path="App.ts" />
+/// <reference path="BoardCustomizer.ts" />
