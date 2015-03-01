@@ -1,7 +1,8 @@
-﻿/// <reference path="IBoardConfigService.ts" />
-/// <reference path="../Repositories/Abstract/IBoardConfigRepository.ts" />
-module Services
+﻿/// <reference path="../Abstract/IBoardConfigService.ts" />
+/// <reference path="../../Repositories/Abstract/IBoardConfigRepository.ts" />
+module Services.Concrete
 {
+    import IBoardConfigService = Abstract.IBoardConfigService;
     import IBoardConfigRepository = Repositories.Abstract.IBoardConfigRepository;
     import Guard = Utils.Guard;
 

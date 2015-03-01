@@ -1,6 +1,7 @@
-﻿/// <reference path="IBoardStyleService.ts" />
-module Services.BoardStyleService
+﻿/// <reference path="../Abstract/IBoardStyleService.ts" />
+module Services.Concrete
 {
+    import IBoardStyleService = Abstract.IBoardStyleService;
     import Guard = Utils.Guard;
 
     export class BoardStyleService implements IBoardStyleService

@@ -1,5 +1,5 @@
 ﻿/// <reference path="../../Models/BoardConfig.ts"/>
-module Services.BoardStyleService
+module Services.Abstract
 {
     import BoardConfig = Models.BoardConfig;
 

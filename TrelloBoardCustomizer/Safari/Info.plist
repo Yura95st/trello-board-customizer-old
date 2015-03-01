@@ -30,10 +30,10 @@
 				<string>scripts/DataStorage/Concrete/LocalDataStorage.js</string>
         <string>scripts/Repositories/Abstract/IBoardConfigRepository.js</string>
 				<string>scripts/Repositories/Concrete/BoardConfigRepository.js</string>
-				<string>scripts/Services/IBoardConfigService.js</string>
-				<string>scripts/Services/BoardConfigService.js</string>
-				<string>scripts/Services/BoardStyleService/IBoardStyleService.js</string>
-				<string>scripts/Services/BoardStyleService/BoardStyleService.js</string>
+				<string>scripts/Services/Abstract/IBoardConfigService.js</string>
+				<string>scripts/Services/Concrete/BoardConfigService.js</string>
+				<string>scripts/Services/Abstract/IBoardStyleService.js</string>
+				<string>scripts/Services/Concrete/BoardStyleService.js</string>
         <string>scripts/BoardCustomizer.js</string>
 				<string>scripts/App.js</string>
 			</array>

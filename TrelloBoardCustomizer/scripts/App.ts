@@ -1,7 +1,7 @@
 ﻿/// <reference path="DataStorage/Concrete/LocalDataStorage.ts" />
 /// <reference path="Repositories/Concrete/BoardConfigRepository.ts" />
-/// <reference path="Services/BoardConfigService.ts" />
-/// <reference path="Services/BoardStyleService/BoardStyleService.ts" />
+/// <reference path="Services/Concrete/BoardConfigService.ts" />
+/// <reference path="Services/Concrete/BoardStyleService.ts" />
 /// <reference path="BoardCustomizer.ts" />
 //declare var chrome: any;
 
@@ -9,9 +9,9 @@ var dataStorage: DataStorage.Abstract.IDataStorage = new DataStorage.Concrete.Lo
 
 var repository: Repositories.Abstract.IBoardConfigRepository = new Repositories.Concrete.BoardConfigRepository(dataStorage);
 
-var boardConfigService: Services.IBoardConfigService = new Services.BoardConfigService(document, repository);
+var boardConfigService: Services.Abstract.IBoardConfigService = new Services.Concrete.BoardConfigService(document, repository);
 
-var boardStyleService: Services.BoardStyleService.IBoardStyleService = new Services.BoardStyleService.BoardStyleService(document);
+var boardStyleService: Services.Abstract.IBoardStyleService = new Services.Concrete.BoardStyleService(document);
 
 var boardCustomizer: BoardCustomizer.BoardCustomizer = new BoardCustomizer.BoardCustomizer(document, boardConfigService, boardStyleService);
 

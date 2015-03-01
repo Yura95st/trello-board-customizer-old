@@ -1,11 +1,11 @@
-﻿/// <reference path="Services/IBoardConfigService.ts" />
-/// <reference path="Services/BoardStyleService/IBoardStyleService.ts" />
+﻿/// <reference path="Services/Abstract/IBoardConfigService.ts" />
+/// <reference path="Services/Abstract/IBoardStyleService.ts" />
 /// <reference path="Models/Url.ts" />
 module BoardCustomizer
 {
+    import IBoardConfigService = Services.Abstract.IBoardConfigService;
+    import IBoardStyleService = Services.Abstract.IBoardStyleService;
     import Guard = Utils.Guard;
-    import IBoardConfigService = Services.IBoardConfigService;
-    import IBoardStyleService = Services.BoardStyleService.IBoardStyleService;
 
     export class BoardCustomizer
     {
