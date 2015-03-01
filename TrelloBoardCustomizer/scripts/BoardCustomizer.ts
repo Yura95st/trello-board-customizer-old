@@ -26,8 +26,6 @@ module BoardCustomizer
 
             this._document = document;
             this._repository = repository;
-
-            this._repository.load();
         }
 
         private startFromLocalStorage(boardId: string): void

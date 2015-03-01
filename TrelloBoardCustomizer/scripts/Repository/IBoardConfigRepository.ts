@@ -6,11 +6,9 @@ module Repository
 
     export interface IBoardConfigRepository
     {
-        insert(boardConfig: BoardConfig): void;
-
         getById(boardConfigId: string): BoardConfig;
 
-        load(): void;
+        insert(boardConfig: BoardConfig): void;
 
         remove(boardConfig: BoardConfig): void;
 
@@ -18,4 +16,4 @@ module Repository
 
         update(boardConfig: BoardConfig): void;
     }
-} 
+}

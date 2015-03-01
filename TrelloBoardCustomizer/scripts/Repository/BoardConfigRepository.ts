@@ -20,18 +20,8 @@ module Repository
             this._dataStorage = dataStorage;
 
             this._boardConfigList = [];
-        }
 
-        insert(boardConfig: Models.BoardConfig): void
-        {
-            Guard.notNull(boardConfig, "boardConfig");
-
-            if (this.getById(boardConfig.boardId) != null)
-            {
-                throw new Error("Board config with id: '" + boardConfig.boardId + "' already exists.");
-            }
-
-            this._boardConfigList.push(boardConfig);
+            this.init();
         }
 
         getById(boardConfigId: string): Models.BoardConfig
@@ -52,29 +42,16 @@ module Repository
             return boardConfig;
         }
 
-        load(): void
+        insert(boardConfig: Models.BoardConfig): void
         {
-            var jsonString: string = this._dataStorage.getItem(BoardConfigRepository.dataStorageKey);
+            Guard.notNull(boardConfig, "boardConfig");
 
-            if (jsonString)
+            if (this.getById(boardConfig.boardId) != null)
             {
-                try
-                {
-                    var data: any = JSON.parse(jsonString);
-
-                    for (var i: number = 0; i < data.length; i++)
-                    {
-                        var boardConfigJson: any = data[i];
-
-                        this._boardConfigList.push(Models.BoardConfig.fromJson(boardConfigJson));
-                    }
-                }
-                catch (e)
-                {
-                    console.error("Failed to load boardConfigs.");
-                    console.error(e);
-                }
+                throw new Error("Board config with id: '" + boardConfig.boardId + "' already exists.");
             }
+
+            this._boardConfigList.push(boardConfig);
         }
 
         remove(boardConfig: Models.BoardConfig): void
@@ -112,6 +89,31 @@ module Repository
             var index: number = this._boardConfigList.indexOf(currentBoardConfig);
 
             this._boardConfigList[index] = boardConfig;
+        }
+
+        private init(): void
+        {
+            var jsonString: string = this._dataStorage.getItem(BoardConfigRepository.dataStorageKey);
+
+            if (jsonString)
+            {
+                try
+                {
+                    var data: any = JSON.parse(jsonString);
+
+                    for (var i: number = 0; i < data.length; i++)
+                    {
+                        var boardConfig: Models.BoardConfig = Models.BoardConfig.fromJson(data[i]);
+
+                        this._boardConfigList.push(boardConfig);
+                    }
+                }
+                catch (e)
+                {
+                    console.error("Failed to init BoardConfigRepository.");
+                    throw e;
+                }
+            }
         }
     }
 }
