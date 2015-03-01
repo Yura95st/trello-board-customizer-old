@@ -69,6 +69,12 @@
     <TypeScriptCompile Include="scripts\Models\Url.ts" />
     <TypeScriptCompile Include="scripts\Repository\BoardConfigRepository.ts" />
     <TypeScriptCompile Include="scripts\Repository\IBoardConfigRepository.ts" />
+    <TypeScriptCompile Include="scripts\Services\BoardConfigService.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="scripts\Services\IBoardConfigService.ts">
+      <SubType>Code</SubType>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="scripts\Utils\Guard.ts" />
   </ItemGroup>
   <ItemGroup>

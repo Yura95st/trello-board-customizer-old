@@ -24,6 +24,8 @@
                 "scripts/DataStorage/LocalDataStorage.js",
                 "scripts/Repository/IBoardConfigRepository.js",
                 "scripts/Repository/BoardConfigRepository.js",
+                "scripts/Services/IBoardConfigService.js",
+                "scripts/Services/BoardConfigService.js",
                 "scripts/BoardCustomizer.js",
                 "scripts/App.js"
             ],

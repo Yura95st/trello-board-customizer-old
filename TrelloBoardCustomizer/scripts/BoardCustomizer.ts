@@ -1,36 +1,34 @@
 ﻿/// <reference path="Utils/Guard.ts" />
 /// <reference path="Models/Url.ts" />
 /// <reference path="Models/BoardConfig.ts" />
-/// <reference path="Repository/IBoardConfigRepository.ts" />
+/// <reference path="Services/IBoardConfigService.ts" />
 module BoardCustomizer
 {
     import Guard = Utils.Guard;
-    import IBoardConfigRepository = Repository.IBoardConfigRepository;
+    import IBoardConfigService = Services.IBoardConfigService;
 
     export class BoardCustomizer
     {
-        private static regexString: string = "@@\.boardconfig={[\\s\\S]*}";
-        private static cardTitleClass: string = "list-card-title";
         private static styleContainerId: string = "trello_board_cutomizer_style";
         private static urlHostName: string = "trello.com";
         private static urlBoardSegment: string = "b";
         private static urlBoardSegmentsMinNumber: number = 2;
 
         private _document: Document;
-        private _repository: IBoardConfigRepository;
+        private _boardConfigService: IBoardConfigService;
 
-        constructor(document: Document, repository: IBoardConfigRepository)
+        constructor(document: Document, boardConfigService: IBoardConfigService)
         {
             Guard.notNull(document, "document");
-            Guard.notNull(repository, "repository");
+            Guard.notNull(boardConfigService, "boardConfigService");
 
             this._document = document;
-            this._repository = repository;
+            this._boardConfigService = boardConfigService;
         }
 
         private startFromLocalStorage(boardId: string): void
         {
-            var boardConfig: Models.BoardConfig = this._repository.getById(boardId);
+            var boardConfig: Models.BoardConfig = this._boardConfigService.getLocalBoardConfig(boardId);
 
             if (boardConfig !== null)
             {
@@ -40,27 +38,13 @@ module BoardCustomizer
 
         private startUsual(boardId: string): void
         {
-            var boardConfigString: string = this.getBoardConfigString();
-
-            var boardConfig: Models.BoardConfig = this.getBoardConfig(boardId, boardConfigString);
-
-            var localBoardConfig: Models.BoardConfig = this._repository.getById(boardId);
+            var boardConfig: Models.BoardConfig = this._boardConfigService.getBoardConfig(boardId);
+            var localBoardConfig: Models.BoardConfig = this._boardConfigService.getLocalBoardConfig(boardId);
 
             if (boardConfig !== null)
             {
                 if (!boardConfig.equals(localBoardConfig))
                 {
-                    if (localBoardConfig === null)
-                    {
-                        this._repository.insert(boardConfig);
-                    }
-                    else
-                    {
-                        this._repository.update(boardConfig);
-                    }
-
-                    this._repository.save();
-
                     this.customize(boardConfig);
                 }
             }
@@ -68,13 +52,10 @@ module BoardCustomizer
             {
                 this.deleteStyleContainer();
 
-                if (localBoardConfig !== null)
-                {
-                    this._repository.remove(localBoardConfig);
-
-                    this._repository.save();
-                }
+                boardConfig = new Models.BoardConfig(boardId);
             }
+
+            this._boardConfigService.saveBoardConfig(boardConfig);
         }
 
         start(isFromLocalStorageMode?: boolean): void
@@ -171,92 +152,6 @@ module BoardCustomizer
         private getBoardIdFromUrl(url: Models.Url): string
         {
             return url.segments[1];
-        }
-
-        private getBoardConfigString(): string
-        {
-            var boardConfigString: string = "";
-
-            var cardTitleNodeList: NodeList = this._document.getElementsByClassName(BoardCustomizer.cardTitleClass);
-
-            var regex: RegExp = new RegExp(BoardCustomizer.regexString);
-
-            for (var i: number = 0; i < cardTitleNodeList.length; i++)
-            {
-                var cardTitleNode: Node = cardTitleNodeList.item(i);
-
-                if (cardTitleNode.hasChildNodes())
-                {
-                    cardTitleNode = cardTitleNode.lastChild;
-                }
-
-                var cardTitleText: string = cardTitleNode.textContent.trim();
-
-                if (regex.test(cardTitleText))
-                {
-                    boardConfigString = cardTitleText.substr(cardTitleText.indexOf("=") + 1);
-                    break;
-                }
-            }
-
-            return boardConfigString;
-        }
-
-        private getBoardConfig(boardId: string, boardConfigString: string): Models.BoardConfig
-        {
-            var boardConfig: Models.BoardConfig = null;
-
-            try
-            {
-                if (boardConfigString.length > 0)
-                {
-                    var data: any = JSON.parse(boardConfigString);
-
-                    boardConfig = new Models.BoardConfig(boardId);
-
-                    boardConfig.background = this.getBoardBackground(data.background);
-                }
-            }
-            catch (e)
-            {
-                console.error("Invalid config format.");
-                console.error(e.message);
-            }
-            finally
-            {
-                return boardConfig;
-            }
-        }
-
-        private getBoardBackground(data: any): Models.BoardBackground
-        {
-            var boardBackground: Models.BoardBackground = null;
-
-            try
-            {
-                if (data)
-                {
-                    boardBackground = new Models.BoardBackground();
-
-                    if (data.color)
-                    {
-                        boardBackground.color = data.color;
-                    }
-
-                    if (data.image)
-                    {
-                        boardBackground.image = data.image;
-                    }
-                }
-            }
-            catch (e)
-            {
-                console.error(e.message);
-            }
-            finally
-            {
-                return boardBackground;
-            }
         }
     }
 }
