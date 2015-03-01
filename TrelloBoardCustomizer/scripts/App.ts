@@ -3,11 +3,11 @@
 
 var dataStorage: DataStorage.Abstract.IDataStorage = new DataStorage.Concrete.LocalDataStorage();
 
-var repository: Repositories.Abstract.IBoardConfigRepository = new Repositories.Concrete.BoardConfigRepository(dataStorage);
+var repository: Repositories.Abstract.IBoardConfigRepository = new Repositories.Concrete.BoardConfigRepository(dataStorage, "trelloBoardCutomizer-boardConfigs");
 
-var boardConfigService: Services.Abstract.IBoardConfigService = new Services.Concrete.BoardConfigService(document, repository);
+var boardConfigService: Services.Abstract.IBoardConfigService = new Services.Concrete.BoardConfigService(document, repository, "@@boardConfig={[\\s\\S]*}", "list-card-title");
 
-var boardStyleService: Services.Abstract.IBoardStyleService = new Services.Concrete.BoardStyleService(document);
+var boardStyleService: Services.Abstract.IBoardStyleService = new Services.Concrete.BoardStyleService(document, "trello_board_cutomizer_style");
 
 var boardCustomizer: BoardCustomizer.BoardCustomizer = new BoardCustomizer.BoardCustomizer(document, boardConfigService, boardStyleService);
 

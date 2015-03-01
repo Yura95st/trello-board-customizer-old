@@ -7,19 +7,22 @@ module Services.Concrete
 
     export class BoardConfigService implements IBoardConfigService
     {
-        private static regexString: string = "@@boardConfig={[\\s\\S]*}";
-        private static cardTitleClass: string = "list-card-title";
-
         private _document: Document;
         private _repository: IBoardConfigRepository;
+        private _boardConfigRegExp: RegExp;
+        private _cardTitleClass: string;
 
-        constructor(document: Document, repository: IBoardConfigRepository)
+        constructor(document: Document, repository: IBoardConfigRepository, boardConfigPattern: string, cardTitleClass: string)
         {
             Guard.notNull(document, "document");
             Guard.notNull(repository, "repository");
+            Guard.notNullOrEmpty(boardConfigPattern, "boardConfigPattern");
+            Guard.notNullOrEmpty(cardTitleClass, "cardTitleClass");
 
             this._document = document;
             this._repository = repository;
+            this._boardConfigRegExp = new RegExp(boardConfigPattern);
+            this._cardTitleClass = cardTitleClass;
         }
 
         getLocalBoardConfig(boardId: string): Models.BoardConfig
@@ -78,12 +81,10 @@ module Services.Concrete
         {
             var boardConfigString: string = "";
 
-            var cardTitleNodeList: NodeList = this._document.getElementsByClassName(BoardConfigService.cardTitleClass);
+            var cardTitleNodeList: NodeList = this._document.getElementsByClassName(this._cardTitleClass);
 
             if (cardTitleNodeList.length > 0)
             {
-                var regex: RegExp = new RegExp(BoardConfigService.regexString);
-
                 for (var i: number = 0; i < cardTitleNodeList.length; i++)
                 {
                     var cardTitleNode: Node = cardTitleNodeList.item(i);
@@ -95,7 +96,7 @@ module Services.Concrete
 
                     var cardTitleText: string = cardTitleNode.textContent.trim();
 
-                    if (regex.test(cardTitleText))
+                    if (this._boardConfigRegExp.test(cardTitleText))
                     {
                         boardConfigString = cardTitleText.substr(cardTitleText.indexOf("=") + 1);
                         break;

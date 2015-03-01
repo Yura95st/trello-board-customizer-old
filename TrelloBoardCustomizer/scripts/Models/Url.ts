@@ -21,11 +21,6 @@ module Models
             this.parse();
         }
 
-        get protocol(): string
-        {
-            return this._protocol;
-        }
-
         get hostname(): string
         {
             return this._hostname;
@@ -36,6 +31,11 @@ module Models
             return this._originalString;
         }
 
+        get protocol(): string
+        {
+            return this._protocol;
+        }
+
         get segments(): string[]
         {
             return this._segments;
@@ -43,14 +43,14 @@ module Models
 
         private parse(): void
         {
-            var parser: HTMLAnchorElement = document.createElement("a");
+            var anchorElement: HTMLAnchorElement = document.createElement("a");
 
-            parser.href = this._originalString;
+            anchorElement.href = this._originalString;
 
-            this._hostname = parser.hostname;
-            this._protocol = parser.protocol;
+            this._hostname = anchorElement.hostname;
+            this._protocol = anchorElement.protocol;
 
-            var segments: string[] = parser.pathname.split("/");
+            var segments: string[] = anchorElement.pathname.split("/");
 
             segments.forEach((segment: string) =>
             {

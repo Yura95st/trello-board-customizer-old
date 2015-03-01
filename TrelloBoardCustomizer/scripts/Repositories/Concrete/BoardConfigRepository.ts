@@ -7,17 +7,19 @@ module Repositories.Concrete
 
     export class BoardConfigRepository implements IBoardConfigRepository
     {
-        private static dataStorageKey: string = "BoardConfigs";
+        private _boardConfigList: Models.BoardConfig[];
 
         private _dataStorage: IDataStorage;
 
-        private _boardConfigList: Models.BoardConfig[];
+        private _dataStorageKey: string;
 
-        constructor(dataStorage: IDataStorage)
+        constructor(dataStorage: IDataStorage, dataStorageKey: string)
         {
             Guard.notNull(dataStorage, "dataStorage");
+            Guard.notNullOrEmpty(dataStorageKey, "dataStorageKey");
 
             this._dataStorage = dataStorage;
+            this._dataStorageKey = dataStorageKey;
 
             this._boardConfigList = [];
 
@@ -72,7 +74,7 @@ module Repositories.Concrete
         {
             var jsonString: string = JSON.stringify(this._boardConfigList);
 
-            this._dataStorage.setItem(BoardConfigRepository.dataStorageKey, jsonString);
+            this._dataStorage.setItem(this._dataStorageKey, jsonString);
         }
 
         update(boardConfig: Models.BoardConfig): void
@@ -93,7 +95,7 @@ module Repositories.Concrete
 
         private init(): void
         {
-            var jsonString: string = this._dataStorage.getItem(BoardConfigRepository.dataStorageKey);
+            var jsonString: string = this._dataStorage.getItem(this._dataStorageKey);
 
             if (jsonString)
             {

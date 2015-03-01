@@ -6,27 +6,28 @@ module Services.Concrete
 
     export class BoardStyleService implements IBoardStyleService
     {
-        private static styleContainerId: string = "trello_board_cutomizer_style";
-
         private _document: Document;
+        private _styleContainerId: string;
 
-        constructor(document: Document)
+        constructor(document: Document, styleContainerId: string)
         {
             Guard.notNull(document, "document");
+            Guard.notNullOrEmpty(styleContainerId, "styleContainerId");
 
             this._document = document;
+            this._styleContainerId = styleContainerId;
         }
 
         applyStyle(boardConfig: Models.BoardConfig): void
         {
             Guard.notNull(boardConfig, "boardConfig");
 
-            var styleContainer: HTMLElement = this._document.getElementById(BoardStyleService.styleContainerId);
+            var styleContainer: HTMLElement = this._document.getElementById(this._styleContainerId);
 
             if (!styleContainer)
             {
                 styleContainer = this._document.createElement("style");
-                styleContainer.setAttribute("id", BoardStyleService.styleContainerId);
+                styleContainer.setAttribute("id", this._styleContainerId);
 
                 this._document.head.appendChild(styleContainer);
             }
@@ -36,7 +37,7 @@ module Services.Concrete
 
         removeStyle(): void
         {
-            var styleContainer: HTMLElement = this._document.getElementById(BoardStyleService.styleContainerId);
+            var styleContainer: HTMLElement = this._document.getElementById(this._styleContainerId);
 
             if (styleContainer)
             {
