@@ -1,59 +1,31 @@
 ﻿/// <reference path="Services/IBoardConfigService.ts" />
+/// <reference path="Services/BoardStyleService/IBoardStyleService.ts" />
 /// <reference path="Models/Url.ts" />
 module BoardCustomizer
 {
     import Guard = Utils.Guard;
     import IBoardConfigService = Services.IBoardConfigService;
+    import IBoardStyleService = Services.BoardStyleService.IBoardStyleService;
 
     export class BoardCustomizer
     {
-        private static styleContainerId: string = "trello_board_cutomizer_style";
         private static urlHostName: string = "trello.com";
         private static urlBoardSegment: string = "b";
         private static urlBoardSegmentsMinNumber: number = 2;
 
         private _document: Document;
         private _boardConfigService: IBoardConfigService;
+        private _boardStyleService: IBoardStyleService;
 
-        constructor(document: Document, boardConfigService: IBoardConfigService)
+        constructor(document: Document, boardConfigService: IBoardConfigService, boardStyleService: IBoardStyleService)
         {
             Guard.notNull(document, "document");
             Guard.notNull(boardConfigService, "boardConfigService");
+            Guard.notNull(boardStyleService, "boardStyleService");
 
             this._document = document;
             this._boardConfigService = boardConfigService;
-        }
-
-        private startFromLocalStorage(boardId: string): void
-        {
-            var boardConfig: Models.BoardConfig = this._boardConfigService.getLocalBoardConfig(boardId);
-
-            if (boardConfig !== null)
-            {
-                this.customize(boardConfig);
-            }
-        }
-
-        private startUsual(boardId: string): void
-        {
-            var boardConfig: Models.BoardConfig = this._boardConfigService.getBoardConfig(boardId);
-            var localBoardConfig: Models.BoardConfig = this._boardConfigService.getLocalBoardConfig(boardId);
-
-            if (boardConfig !== null)
-            {
-                if (!boardConfig.equals(localBoardConfig))
-                {
-                    this.customize(boardConfig);
-                }
-            }
-            else
-            {
-                this.deleteStyleContainer();
-
-                boardConfig = new Models.BoardConfig(boardId);
-            }
-
-            this._boardConfigService.saveBoardConfig(boardConfig);
+            this._boardStyleService = boardStyleService;
         }
 
         start(isFromLocalStorageMode?: boolean): void
@@ -77,69 +49,9 @@ module BoardCustomizer
             }
         }
 
-        private customize(boardConfig: Models.BoardConfig): void
+        private getBoardIdFromUrl(url: Models.Url): string
         {
-            var styleContainer: HTMLElement = this.getStyleContainer();
-
-            styleContainer.innerText = this.generateStyle(boardConfig);
-        }
-
-        private getStyleContainer(): HTMLElement
-        {
-            var styleContainer: HTMLElement = this._document.getElementById(BoardCustomizer.styleContainerId);
-
-            if (!styleContainer)
-            {
-                styleContainer = this._document.createElement("style");
-                styleContainer.setAttribute("id", BoardCustomizer.styleContainerId);
-
-                this._document.body.appendChild(styleContainer);
-            }
-
-            return styleContainer;
-        }
-
-        private deleteStyleContainer(): void
-        {
-            var styleContainer: HTMLElement = this._document.getElementById(BoardCustomizer.styleContainerId);
-
-            if (styleContainer)
-            {
-                this._document.body.removeChild(styleContainer);
-            }
-        }
-
-        private generateStyle(boardConfig: Models.BoardConfig): string
-        {
-            var newStyle: string = "";
-
-            newStyle += this.generateBackgroundStyle(boardConfig.background);
-
-            return newStyle;
-        }
-
-        private generateBackgroundStyle(boardBackground: Models.BoardBackground): string
-        {
-            var newStyle: string = "";
-
-            if (boardBackground)
-            {
-                newStyle += "body {";
-
-                if (boardBackground.image)
-                {
-                    newStyle += "background-image: url(\"" + boardBackground.image + "\") !important;";
-                }
-
-                if (boardBackground.color)
-                {
-                    newStyle += "background-color: " + boardBackground.color + " !important;";
-                }
-
-                newStyle += "}";
-            }
-
-            return newStyle;
+            return url.segments[1];
         }
 
         private isBoardUrl(url: Models.Url): boolean
@@ -147,9 +59,36 @@ module BoardCustomizer
             return url.hostname === BoardCustomizer.urlHostName && url.segments.length >= BoardCustomizer.urlBoardSegmentsMinNumber && url.segments[0] === BoardCustomizer.urlBoardSegment;
         }
 
-        private getBoardIdFromUrl(url: Models.Url): string
+        private startFromLocalStorage(boardId: string): void
         {
-            return url.segments[1];
+            var boardConfig: Models.BoardConfig = this._boardConfigService.getLocalBoardConfig(boardId);
+
+            if (boardConfig !== null)
+            {
+                this._boardStyleService.applyStyle(boardConfig);
+            }
+        }
+
+        private startUsual(boardId: string): void
+        {
+            var boardConfig: Models.BoardConfig = this._boardConfigService.getBoardConfig(boardId);
+            var localBoardConfig: Models.BoardConfig = this._boardConfigService.getLocalBoardConfig(boardId);
+
+            if (boardConfig !== null)
+            {
+                if (!boardConfig.equals(localBoardConfig))
+                {
+                    this._boardStyleService.applyStyle(boardConfig);
+                }
+            }
+            else
+            {
+                this._boardStyleService.removeStyle();
+
+                boardConfig = new Models.BoardConfig(boardId);
+            }
+
+            this._boardConfigService.saveBoardConfig(boardConfig);
         }
     }
 }

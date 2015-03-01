@@ -26,6 +26,8 @@
                 "scripts/Repository/BoardConfigRepository.js",
                 "scripts/Services/IBoardConfigService.js",
                 "scripts/Services/BoardConfigService.js",
+                "scripts/Services/BoardStyleService/IBoardStyleService.js",
+                "scripts/Services/BoardStyleService/BoardStyleService.js",
                 "scripts/BoardCustomizer.js",
                 "scripts/App.js"
             ],

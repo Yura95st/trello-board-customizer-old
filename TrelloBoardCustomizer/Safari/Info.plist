@@ -32,7 +32,9 @@
 				<string>scripts/Repository/BoardConfigRepository.js</string>
 				<string>scripts/Services/IBoardConfigService.js</string>
 				<string>scripts/Services/BoardConfigService.js</string>
-				<string>scripts/BoardCustomizer.js</string>
+				<string>scripts/Services/BoardStyleService/IBoardStyleService.js</string>
+				<string>scripts/Services/BoardStyleService/BoardStyleService.js</string>
+        <string>scripts/BoardCustomizer.js</string>
 				<string>scripts/App.js</string>
 			</array>
 		</dict>

@@ -1,6 +1,7 @@
 ﻿/// <reference path="DataStorage/LocalDataStorage.ts" />
 /// <reference path="Repository/BoardConfigRepository.ts" />
 /// <reference path="Services/BoardConfigService.ts" />
+/// <reference path="Services/BoardStyleService/BoardStyleService.ts" />
 /// <reference path="BoardCustomizer.ts" />
 //declare var chrome: any;
 
@@ -10,7 +11,9 @@ var repository: Repository.IBoardConfigRepository = new Repository.BoardConfigRe
 
 var boardConfigService: Services.IBoardConfigService = new Services.BoardConfigService(document, repository);
 
-var boardCustomizer: BoardCustomizer.BoardCustomizer = new BoardCustomizer.BoardCustomizer(document, boardConfigService);
+var boardStyleService: Services.BoardStyleService.IBoardStyleService = new Services.BoardStyleService.BoardStyleService(document);
+
+var boardCustomizer: BoardCustomizer.BoardCustomizer = new BoardCustomizer.BoardCustomizer(document, boardConfigService, boardStyleService);
 
 boardCustomizer.start(true);
 

@@ -72,6 +72,8 @@
     <TypeScriptCompile Include="scripts\Services\BoardConfigService.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="scripts\Services\BoardStyleService\BoardStyleService.ts" />
+    <TypeScriptCompile Include="scripts\Services\BoardStyleService\IBoardStyleService.ts" />
     <TypeScriptCompile Include="scripts\Services\IBoardConfigService.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
@@ -81,5 +83,6 @@
     <Content Include="Chrome\manifest.json" />
     <Content Include="Safari\Info.plist" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>

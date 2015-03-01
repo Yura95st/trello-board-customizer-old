@@ -1,4 +1,4 @@
-﻿/// <reference path="../Services/IBoardConfigService.ts" />
+﻿/// <reference path="IBoardConfigService.ts" />
 /// <reference path="../Repository/IBoardConfigRepository.ts" />
 module Services
 {
