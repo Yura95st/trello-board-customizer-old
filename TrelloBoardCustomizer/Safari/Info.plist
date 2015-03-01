@@ -34,6 +34,8 @@
 				<string>scripts/Services/Concrete/BoardConfigService.js</string>
 				<string>scripts/Services/Abstract/IBoardStyleService.js</string>
 				<string>scripts/Services/Concrete/BoardStyleService.js</string>
+				<string>scripts/Services/Abstract/IBoardUrlService.ts</string>
+				<string>scripts/Services/Concrete/BoardUrlService.ts</string>
         <string>scripts/BoardCustomizer.js</string>
 				<string>scripts/App.js</string>
 			</array>

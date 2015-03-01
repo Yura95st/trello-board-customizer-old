@@ -70,9 +70,11 @@
     <TypeScriptCompile Include="scripts\Models\Url.ts" />
     <TypeScriptCompile Include="scripts\Repositories\Concrete\BoardConfigRepository.ts" />
     <TypeScriptCompile Include="scripts\Repositories\Abstract\IBoardConfigRepository.ts" />
+    <TypeScriptCompile Include="scripts\Services\Abstract\IBoardUrlService.ts" />
     <TypeScriptCompile Include="scripts\Services\Concrete\BoardConfigService.ts">
       <SubType>Code</SubType>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="scripts\Services\Concrete\BoardUrlService.ts" />
     <TypeScriptCompile Include="scripts\Services\Concrete\BoardStyleService.ts" />
     <TypeScriptCompile Include="scripts\Services\Abstract\IBoardStyleService.ts" />
     <TypeScriptCompile Include="scripts\Services\Abstract\IBoardConfigService.ts">

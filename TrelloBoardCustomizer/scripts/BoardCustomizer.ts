@@ -1,41 +1,41 @@
 ﻿/// <reference path="References.ts" />
 module BoardCustomizer
 {
+    import IBoardUrlService = Services.Abstract.IBoardUrlService;
     import IBoardConfigService = Services.Abstract.IBoardConfigService;
     import IBoardStyleService = Services.Abstract.IBoardStyleService;
     import Guard = Utils.Guard;
+    import Url = Models.Url;
 
     export class BoardCustomizer
     {
-        private static urlHostName: string = "trello.com";
-        private static urlBoardSegment: string = "b";
-        private static urlBoardSegmentsMinNumber: number = 2;
-
-        private _document: Document;
+        private _boardUrlService: IBoardUrlService;
         private _boardConfigService: IBoardConfigService;
         private _boardStyleService: IBoardStyleService;
 
-        constructor(document: Document, boardConfigService: IBoardConfigService, boardStyleService: IBoardStyleService)
+        constructor(boardUrlService: IBoardUrlService, boardConfigService: IBoardConfigService, boardStyleService: IBoardStyleService)
         {
-            Guard.notNull(document, "document");
+            Guard.notNull(boardUrlService, "boardUrlService");
             Guard.notNull(boardConfigService, "boardConfigService");
             Guard.notNull(boardStyleService, "boardStyleService");
 
-            this._document = document;
+            this._boardUrlService = boardUrlService;
             this._boardConfigService = boardConfigService;
             this._boardStyleService = boardStyleService;
         }
 
-        start(isFromLocalStorageMode?: boolean): void
+        start(urlString: string, isFromLocalStorageMode?: boolean): void
         {
-            var url: Models.Url = new Models.Url(this._document.URL);
+            Guard.notNullOrEmpty(urlString, "urlString");
 
-            if (!this.isBoardUrl(url))
+            var url: Url = new Url(urlString);
+
+            if (!this._boardUrlService.isBoardUrl(url))
             {
                 return;
             }
 
-            var boardId: string = this.getBoardIdFromUrl(url);
+            var boardId: string = this._boardUrlService.getBoardIdFromUrl(url);
 
             if (isFromLocalStorageMode)
             {
@@ -45,16 +45,6 @@ module BoardCustomizer
             {
                 this.startUsual(boardId);
             }
-        }
-
-        private getBoardIdFromUrl(url: Models.Url): string
-        {
-            return url.segments[1];
-        }
-
-        private isBoardUrl(url: Models.Url): boolean
-        {
-            return url.hostname === BoardCustomizer.urlHostName && url.segments.length >= BoardCustomizer.urlBoardSegmentsMinNumber && url.segments[0] === BoardCustomizer.urlBoardSegment;
         }
 
         private startFromLocalStorage(boardId: string): void

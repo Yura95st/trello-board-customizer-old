@@ -28,6 +28,8 @@
                 "scripts/Services/Concrete/BoardConfigService.js",
                 "scripts/Services/Abstract/IBoardStyleService.js",
                 "scripts/Services/Concrete/BoardStyleService.js",
+                "scripts/Services/Abstract/IBoardUrlService.ts",
+                "scripts/Services/Concrete/BoardUrlService.ts",
                 "scripts/BoardCustomizer.js",
                 "scripts/App.js"
             ],

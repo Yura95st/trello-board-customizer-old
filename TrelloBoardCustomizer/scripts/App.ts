@@ -9,14 +9,16 @@ var boardConfigService: Services.Abstract.IBoardConfigService = new Services.Con
 
 var boardStyleService: Services.Abstract.IBoardStyleService = new Services.Concrete.BoardStyleService(document, "trello_board_cutomizer_style");
 
-var boardCustomizer: BoardCustomizer.BoardCustomizer = new BoardCustomizer.BoardCustomizer(document, boardConfigService, boardStyleService);
+var boardUrlService: Services.Abstract.IBoardUrlService = new Services.Concrete.BoardUrlService("trello.com", "b", 1);
 
-boardCustomizer.start(true);
+var boardCustomizer: BoardCustomizer.BoardCustomizer = new BoardCustomizer.BoardCustomizer(boardUrlService, boardConfigService, boardStyleService);
+
+boardCustomizer.start(document.URL, true);
 
 window.onload = () =>
 {
     window.setInterval(() =>
     {
-        boardCustomizer.start();
+        boardCustomizer.start(document.URL);
     }, 100);
 };
