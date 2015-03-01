@@ -1,11 +1,11 @@
-﻿/// <reference path="DataStorage/LocalDataStorage.ts" />
+﻿/// <reference path="DataStorage/Concrete/LocalDataStorage.ts" />
 /// <reference path="Repository/BoardConfigRepository.ts" />
 /// <reference path="Services/BoardConfigService.ts" />
 /// <reference path="Services/BoardStyleService/BoardStyleService.ts" />
 /// <reference path="BoardCustomizer.ts" />
 //declare var chrome: any;
 
-var dataStorage: DataStorage.IDataStorage = new DataStorage.LocalDataStorage();
+var dataStorage: DataStorage.Abstract.IDataStorage = new DataStorage.Concrete.LocalDataStorage();
 
 var repository: Repository.IBoardConfigRepository = new Repository.BoardConfigRepository(dataStorage);
 

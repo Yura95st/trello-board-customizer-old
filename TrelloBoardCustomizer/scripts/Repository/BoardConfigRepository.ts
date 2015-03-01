@@ -1,8 +1,8 @@
 ﻿/// <reference path="IBoardConfigRepository.ts" />
-/// <reference path="../DataStorage/IDataStorage.ts" />
+/// <reference path="../DataStorage/Abstract/IDataStorage.ts" />
 module Repository
 {
-    import IDataStorage = DataStorage.IDataStorage;
+    import IDataStorage = DataStorage.Abstract.IDataStorage;
     import Guard = Utils.Guard;
 
     export class BoardConfigRepository implements IBoardConfigRepository

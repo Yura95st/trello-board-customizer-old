@@ -26,8 +26,8 @@
 				<string>scripts/Models/Url.js</string>
 				<string>scripts/Models/BoardBackground.js</string>
 				<string>scripts/Models/BoardConfig.js</string>
-				<string>scripts/DataStorage/IDataStorage.js</string>
-				<string>scripts/DataStorage/LocalDataStorage.js</string>
+				<string>scripts/DataStorage/Abstract/IDataStorage.js</string>
+				<string>scripts/DataStorage/Concrete/LocalDataStorage.js</string>
 				<string>scripts/Repository/IBoardConfigRepository.js</string>
 				<string>scripts/Repository/BoardConfigRepository.js</string>
 				<string>scripts/Services/IBoardConfigService.js</string>

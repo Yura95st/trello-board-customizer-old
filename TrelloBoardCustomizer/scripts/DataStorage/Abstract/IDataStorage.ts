@@ -1,4 +1,4 @@
-﻿module DataStorage
+﻿module DataStorage.Abstract
 {
     export interface IDataStorage
     {

@@ -62,8 +62,8 @@
       <SubType>Code</SubType>
     </TypeScriptCompile>
     <TypeScriptCompile Include="scripts\App.ts" />
-    <TypeScriptCompile Include="scripts\DataStorage\LocalDataStorage.ts" />
-    <TypeScriptCompile Include="scripts\DataStorage\IDataStorage.ts" />
+    <TypeScriptCompile Include="scripts\DataStorage\Concrete\LocalDataStorage.ts" />
+    <TypeScriptCompile Include="scripts\DataStorage\Abstract\IDataStorage.ts" />
     <TypeScriptCompile Include="scripts\Models\BoardBackground.ts" />
     <TypeScriptCompile Include="scripts\Models\BoardConfig.ts" />
     <TypeScriptCompile Include="scripts\Models\Url.ts" />

@@ -1,8 +1,8 @@
-﻿/// <reference path="IDataStorage.ts" />
-/// <reference path="../Utils/Guard.ts" />
-
-module DataStorage
+﻿/// <reference path="../Abstract/IDataStorage.ts" />
+/// <reference path="../../Utils/Guard.ts" />
+module DataStorage.Concrete
 {
+    import IDataStorage = Abstract.IDataStorage;
     import Guard = Utils.Guard;
 
     export class LocalDataStorage implements IDataStorage
@@ -21,4 +21,4 @@ module DataStorage
             localStorage[key] = value;
         }
     }
-} 
+}
