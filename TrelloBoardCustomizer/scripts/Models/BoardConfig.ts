@@ -33,7 +33,7 @@ module Models
 
         equals(boardConfig: BoardConfig): boolean
         {
-            if (!boardConfig)
+            if (boardConfig === undefined || boardConfig === null)
             {
                 return false;
             }
@@ -63,40 +63,35 @@ module Models
 
         static fromJson(json: any): BoardConfig
         {
-            var boardConfig: BoardConfig = null;
+            Guard.notNullOrEmpty(json, "json");
 
             try
             {
-                if (json)
+                var boardConfig: BoardConfig = new BoardConfig(json._boardId);
+
+                if (json._background)
                 {
-                    boardConfig = new BoardConfig(json._boardId);
+                    var boardBackground: BoardBackground = new BoardBackground();
 
-                    if (json._background)
+                    if (json._background._color)
                     {
-                        var boardBackground: BoardBackground = new BoardBackground();
-
-                        if (json._background._color)
-                        {
-                            boardBackground.color = json._background._color;
-                        }
-
-                        if (json._background._image)
-                        {
-                            boardBackground.image = json._background._image;
-                        }
-
-                        boardConfig.background = boardBackground;
+                        boardBackground.color = json._background._color;
                     }
+
+                    if (json._background._image)
+                    {
+                        boardBackground.image = json._background._image;
+                    }
+
+                    boardConfig.background = boardBackground;
                 }
+
+                return boardConfig;
             }
             catch (e)
             {
-                console.error("Invalid json for BoardConfig.");
                 console.error(e.message);
-            }
-            finally
-            {
-                return boardConfig;
+                throw new RangeError("Invalid BoardConfig json format: '" + json + "'");
             }
         }
     }
