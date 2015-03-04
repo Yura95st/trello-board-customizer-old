@@ -5,6 +5,10 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrelloBoardCustomizer", "TrelloBoardCustomizer\TrelloBoardCustomizer.csproj", "{EAA33DF9-8B79-4010-9141-E3DE30F8E1A4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TrelloBoardCustomizer.Tests", "TrelloBoardCustomizer\Tests\TrelloBoardCustomizer.Tests\TrelloBoardCustomizer.Tests.csproj", "{CA098BF4-D4B9-48AC-A187-507FCB879CA9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{6D15FB44-1E8C-48D7-BAFA-090966BA120B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,8 +19,15 @@ Global
 		{EAA33DF9-8B79-4010-9141-E3DE30F8E1A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EAA33DF9-8B79-4010-9141-E3DE30F8E1A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EAA33DF9-8B79-4010-9141-E3DE30F8E1A4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CA098BF4-D4B9-48AC-A187-507FCB879CA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CA098BF4-D4B9-48AC-A187-507FCB879CA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CA098BF4-D4B9-48AC-A187-507FCB879CA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CA098BF4-D4B9-48AC-A187-507FCB879CA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{CA098BF4-D4B9-48AC-A187-507FCB879CA9} = {6D15FB44-1E8C-48D7-BAFA-090966BA120B}
 	EndGlobalSection
 EndGlobal

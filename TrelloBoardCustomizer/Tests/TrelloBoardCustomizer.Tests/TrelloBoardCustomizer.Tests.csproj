@@ -3,7 +3,7 @@
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.Default.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
-    <ProjectGuid>{EAA33DF9-8B79-4010-9141-E3DE30F8E1A4}</ProjectGuid>
+    <ProjectGuid>{CA098BF4-D4B9-48AC-A187-507FCB879CA9}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <OutputPath>bin</OutputPath>
@@ -17,11 +17,32 @@
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
   </PropertyGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="Scripts\References.ts" />
+    <TypeScriptCompile Include="Scripts\Lib\TeddyMocks\TeddyMocks.ts" />
+    <TypeScriptCompile Include="Scripts\typings\qunit\qunit.d.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TestRunner.html" />
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="_referencesTS\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\TrelloBoardCustomizer.csproj">
+      <Project>{eaa33df9-8b79-4010-9141-e3de30f8e1a4}</Project>
+      <Name>TrelloBoardCustomizer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">12.0</VisualStudioVersion>
   </PropertyGroup>
   <PropertyGroup>
-    <RootNamespace>TrelloBoardCustomizer</RootNamespace>
+    <RootNamespace>TrelloBoardCustomizer.Tests</RootNamespace>
   </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\WebApplications\Microsoft.WebApplication.targets')" />
@@ -31,9 +52,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>2886</DevelopmentServerPort>
+          <DevelopmentServerPort>7790</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:46950/</IISUrl>
+          <IISUrl>http://localhost:7790/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>
@@ -50,45 +71,6 @@
   <PropertyGroup Condition="'$(Configuration)' == 'Release'">
     <TypeScriptRemoveComments>true</TypeScriptRemoveComments>
     <TypeScriptSourceMap>false</TypeScriptSourceMap>
-  </PropertyGroup>
-  <ItemGroup>
-    <Content Include="images\Icon-128.png" />
-    <Content Include="images\Icon-32.png" />
-    <Content Include="images\Icon-48.png" />
-    <Content Include="images\Icon-64.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <TypeScriptCompile Include="scripts\References.ts" />
-    <TypeScriptCompile Include="scripts\BoardCustomizer.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="scripts\App.ts" />
-    <TypeScriptCompile Include="scripts\DataStorage\Concrete\LocalDataStorage.ts" />
-    <TypeScriptCompile Include="scripts\DataStorage\Abstract\IDataStorage.ts" />
-    <TypeScriptCompile Include="scripts\Models\BoardBackground.ts" />
-    <TypeScriptCompile Include="scripts\Models\BoardConfig.ts" />
-    <TypeScriptCompile Include="scripts\Models\Url.ts" />
-    <TypeScriptCompile Include="scripts\Repositories\Concrete\BoardConfigRepository.ts" />
-    <TypeScriptCompile Include="scripts\Repositories\Abstract\IBoardConfigRepository.ts" />
-    <TypeScriptCompile Include="scripts\Services\Abstract\IBoardUrlService.ts" />
-    <TypeScriptCompile Include="scripts\Services\Concrete\BoardConfigService.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="scripts\Services\Concrete\BoardUrlService.ts" />
-    <TypeScriptCompile Include="scripts\Services\Concrete\BoardStyleService.ts" />
-    <TypeScriptCompile Include="scripts\Services\Abstract\IBoardStyleService.ts" />
-    <TypeScriptCompile Include="scripts\Services\Abstract\IBoardConfigService.ts">
-      <SubType>Code</SubType>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="scripts\Utils\Guard.ts" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Chrome\manifest.json" />
-    <Content Include="Safari\Info.plist" />
-  </ItemGroup>
-  <PropertyGroup Condition="'$(Configuration)' == 'Debug'">
-    <TypeScriptOutFile>Tests\TrelloBoardCustomizer.Tests\_referencesTS\TrelloBoardCustomizer.js</TypeScriptOutFile>
-    <TypeScriptGeneratesDeclarations>True</TypeScriptGeneratesDeclarations>
   </PropertyGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets" Condition="Exists('$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\TypeScript\Microsoft.TypeScript.targets')" />
 </Project>
