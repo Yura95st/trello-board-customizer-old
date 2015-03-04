@@ -5,7 +5,7 @@ module TrelloBoardCustomizer.Services.Abstract
 
     export interface IBoardStyleService
     {
-        applyStyle(boardConfig: BoardConfig) : void;
+        applyStyle(boardConfig: BoardConfig): void;
 
         removeStyle(): void;
     }
