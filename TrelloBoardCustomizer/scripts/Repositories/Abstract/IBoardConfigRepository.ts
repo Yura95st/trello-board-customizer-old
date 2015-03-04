@@ -1,5 +1,5 @@
 ﻿/// <reference path="../../References.ts" />
-module Repositories.Abstract
+module TrelloBoardCustomizer.Repositories.Abstract
 {
     import BoardConfig = Models.BoardConfig;
 

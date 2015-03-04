@@ -1,5 +1,5 @@
 ﻿/// <reference path="../../References.ts" />
-module Services.Abstract
+module TrelloBoardCustomizer.Services.Abstract
 {
     import Url = Models.Url;
 

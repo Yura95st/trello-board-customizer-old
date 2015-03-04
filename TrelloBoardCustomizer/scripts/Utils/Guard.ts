@@ -1,5 +1,5 @@
 ﻿/// <reference path="../References.ts" />
-module Utils
+module TrelloBoardCustomizer.Utils
 {
     export class Guard
     {

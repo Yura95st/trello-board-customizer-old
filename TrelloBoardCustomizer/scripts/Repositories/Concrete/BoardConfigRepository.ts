@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../References.ts" />
-module Repositories.Concrete
+module TrelloBoardCustomizer.Repositories.Concrete
 {
-    import IBoardConfigRepository = Abstract.IBoardConfigRepository;
+    import IBoardConfigRepository = Repositories.Abstract.IBoardConfigRepository;
     import IDataStorage = DataStorage.Abstract.IDataStorage;
     import Guard = Utils.Guard;
 

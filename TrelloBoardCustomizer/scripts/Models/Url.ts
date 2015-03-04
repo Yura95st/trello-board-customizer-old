@@ -1,5 +1,5 @@
 ﻿/// <reference path="../References.ts" />
-module Models
+module TrelloBoardCustomizer.Models
 {
     import Guard = Utils.Guard;
 

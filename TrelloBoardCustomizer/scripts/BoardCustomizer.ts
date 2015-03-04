@@ -1,5 +1,5 @@
 ﻿/// <reference path="References.ts" />
-module BoardCustomizer
+module TrelloBoardCustomizer
 {
     import IBoardUrlService = Services.Abstract.IBoardUrlService;
     import IBoardConfigService = Services.Abstract.IBoardConfigService;

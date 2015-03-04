@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../References.ts" />
-module DataStorage.Concrete
+module TrelloBoardCustomizer.DataStorage.Concrete
 {
-    import IDataStorage = Abstract.IDataStorage;
+    import IDataStorage = DataStorage.Abstract.IDataStorage;
     import Guard = Utils.Guard;
 
     export class LocalDataStorage implements IDataStorage

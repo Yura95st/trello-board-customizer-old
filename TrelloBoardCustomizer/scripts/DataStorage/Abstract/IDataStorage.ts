@@ -1,5 +1,5 @@
 ﻿/// <reference path="../../References.ts" />
-module DataStorage.Abstract
+module TrelloBoardCustomizer.DataStorage.Abstract
 {
     export interface IDataStorage
     {

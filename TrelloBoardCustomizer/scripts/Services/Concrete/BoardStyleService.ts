@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../References.ts" />
-module Services.Concrete
+module TrelloBoardCustomizer.Services.Concrete
 {
-    import IBoardStyleService = Abstract.IBoardStyleService;
+    import IBoardStyleService = Services.Abstract.IBoardStyleService;
     import Guard = Utils.Guard;
 
     export class BoardStyleService implements IBoardStyleService

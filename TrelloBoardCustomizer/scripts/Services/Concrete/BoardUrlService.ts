@@ -1,7 +1,7 @@
 ﻿/// <reference path="../../References.ts" />
-module Services.Concrete
+module TrelloBoardCustomizer.Services.Concrete
 {
-    import IBoardUrlService = Abstract.IBoardUrlService;
+    import IBoardUrlService = Services.Abstract.IBoardUrlService;
     import Guard = Utils.Guard;
     import Url = Models.Url;
 
