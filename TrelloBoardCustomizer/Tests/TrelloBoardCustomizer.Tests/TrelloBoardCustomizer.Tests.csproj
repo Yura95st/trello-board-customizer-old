@@ -21,6 +21,7 @@
     <TypeScriptCompile Include="Scripts\References.ts" />
     <TypeScriptCompile Include="Scripts\Lib\TeddyMocks\TeddyMocks.ts" />
     <TypeScriptCompile Include="Scripts\typings\qunit\qunit.d.ts" />
+    <TypeScriptCompile Include="Scripts\Utils\GuardTests.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="TestRunner.html" />
