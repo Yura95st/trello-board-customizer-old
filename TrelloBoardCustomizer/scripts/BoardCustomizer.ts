@@ -13,6 +13,8 @@ module TrelloBoardCustomizer
         private _boardConfigService: IBoardConfigService;
         private _boardStyleService: IBoardStyleService;
 
+        private _currentBoardId: string;
+
         constructor(boardUrlService: IBoardUrlService, boardConfigService: IBoardConfigService, boardStyleService: IBoardStyleService)
         {
             Guard.notNull(boardUrlService, "boardUrlService");
@@ -22,6 +24,8 @@ module TrelloBoardCustomizer
             this._boardUrlService = boardUrlService;
             this._boardConfigService = boardConfigService;
             this._boardStyleService = boardStyleService;
+
+            this._currentBoardId = "";
         }
 
         start(urlString: string, isFromLocalStorageMode?: boolean): void
@@ -32,6 +36,10 @@ module TrelloBoardCustomizer
 
             if (!this._boardUrlService.isBoardUrl(url))
             {
+                this._boardConfigService.clearAllConfigs();
+
+                this._boardStyleService.removeStyle();
+
                 return;
             }
 
@@ -45,6 +53,8 @@ module TrelloBoardCustomizer
             {
                 this.startUsual(boardId);
             }
+
+            this._currentBoardId = boardId;
         }
 
         private startFromLocalStorage(boardId: string): void
@@ -64,7 +74,7 @@ module TrelloBoardCustomizer
 
             if (boardConfig !== null)
             {
-                if (!boardConfig.equals(localBoardConfig))
+                if (boardId !== this._currentBoardId || !boardConfig.equals(localBoardConfig))
                 {
                     this._boardStyleService.applyStyle(boardConfig);
                 }

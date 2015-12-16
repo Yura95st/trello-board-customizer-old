@@ -5,6 +5,8 @@ module TrelloBoardCustomizer.Services.Abstract
 
     export interface IBoardConfigService
     {
+        clearAllConfigs(): void;
+
         getBoardConfig(boardId: string): BoardConfig;
 
         getLocalBoardConfig(boardId: string): BoardConfig;

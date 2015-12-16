@@ -55,7 +55,7 @@ module TrelloBoardCustomizer.Services.Concrete
 
                 if (boardBackground.image)
                 {
-                    styleString += "background-image: url(\"" + boardBackground.image + "\") !important;";
+                    styleString += "background-image: url(" + boardBackground.image + ") !important;";
                 }
 
                 if (boardBackground.color)

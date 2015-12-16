@@ -25,6 +25,12 @@ module TrelloBoardCustomizer.Services.Concrete
             this._cardTitleClass = cardTitleClass;
         }
 
+        clearAllConfigs(): void
+        {
+            this._repository.clear();
+            this._repository.save();
+        }
+
         getLocalBoardConfig(boardId: string): Models.BoardConfig
         {
             Guard.notNullOrEmpty(boardId, "boardId");

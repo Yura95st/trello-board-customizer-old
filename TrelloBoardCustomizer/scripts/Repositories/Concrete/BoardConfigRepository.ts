@@ -21,9 +21,13 @@ module TrelloBoardCustomizer.Repositories.Concrete
             this._dataStorage = dataStorage;
             this._dataStorageKey = dataStorageKey;
 
-            this._boardConfigList = [];
-
+            this.clear();
             this.init();
+        }
+
+        clear(): void
+        {
+            this._boardConfigList = [];
         }
 
         getById(boardConfigId: string): Models.BoardConfig

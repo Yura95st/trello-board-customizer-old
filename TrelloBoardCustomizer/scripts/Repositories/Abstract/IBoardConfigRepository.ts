@@ -5,6 +5,8 @@ module TrelloBoardCustomizer.Repositories.Abstract
 
     export interface IBoardConfigRepository
     {
+        clear(): void;
+
         getById(boardConfigId: string): BoardConfig;
 
         insert(boardConfig: BoardConfig): void;
